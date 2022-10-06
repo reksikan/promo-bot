@@ -1,3 +1,5 @@
+import io
+
 from aiogram import Bot, Dispatcher, types, executor
 import requests
 
@@ -13,14 +15,17 @@ async def start(message: types.Message):
         text=text.TEXT_RU_START,
     )
 
-@dispatcher.message_handler(content_types=(types.ContentTypes.PHOTO, ))
+@dispatcher.message_handler(content_types=types.ContentTypes.PHOTO)
 async def send_promo(message: types.Message):
     await message.answer(
         text=text.TEXT_RU_SENDPROMO
     )\
 
-@dispatcher.message_handler(lambda message: message.photo is None)
-async def send_promo(message: types.Message):
+@dispatcher.message_handler()
+async def mistake(message: types.Message):
+    await message.answer_photo(
+        photo=io.FileIO('mistake_example.jpg')
+    )
     await message.answer(
         text=text.TEXT_RU_MISTAKE
     )
