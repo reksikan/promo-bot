@@ -1,0 +1,6 @@
+version: '2'
+services:
+
+  promo-bot:
+    build: bot/
+    env_file: .env.dev
