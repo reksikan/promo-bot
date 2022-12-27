@@ -3,4 +3,4 @@ services:
 
   promo-bot:
     build: bot/
-    env_file: .env.dev
+    env_file: .env
