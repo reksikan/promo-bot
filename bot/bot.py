@@ -4,7 +4,7 @@ from datetime import datetime
 from aiogram import Bot, Dispatcher, types, executor
 import requests
 
-from config import BOT_TOKEN
+from config import BOT_TOKEN, BACKEND_URL
 import textes as text
 
 bot = Bot(BOT_TOKEN)
@@ -21,7 +21,7 @@ async def send_promo(message: types.Message):
     photo_name = f'{datetime.now()}.jpg'
     await message.photo[-1].download(photo_name)
     requests.post(
-        url='http://tools.marketspace.pro/support/',
+        url=f'{BACKEND_URL}/support/',
         data={
             'tg_id': message.from_user.username
         },
